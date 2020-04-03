@@ -22,7 +22,7 @@ Let's look at a very small, very incomplete example:
 ```c++
 #include <JustLayers/ECS.h>
 #include <JustLayers/Taskmaster.h>
-#include <JustLayers/System.h
+#include <JustLayers/System.h>
 
 class RenderComponent : public jl::Component {
     // ...info on the mesh to use?
