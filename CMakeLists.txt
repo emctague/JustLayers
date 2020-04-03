@@ -25,6 +25,6 @@ add_subdirectory(${CMAKE_CURRENT_BINARY_DIR}/googletest-src
         EXCLUDE_FROM_ALL)
 
 
-add_executable(test test/RegistryTests.cpp test/ResourceManagerTests.cpp test/ECSTests.cpp)
+add_executable(test test/RegistryTests.cpp test/ResourceManagerTests.cpp test/ECSTests.cpp test/TaskmasterTests.cpp)
 target_link_libraries(test JustLayers gtest_main)
 add_test(NAME test_test COMMAND test)
