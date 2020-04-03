@@ -6,6 +6,7 @@
 #include "Taskmaster.h"
 #include <optional>
 #include <tuple>
+#include <unordered_map>
 
 namespace jl {
 
