@@ -21,11 +21,11 @@ jobs:
       - name: CMake Configure
         run: cmake ..
         working-directory: build
-      - name: CMake Build
-        run: make
-        working-directory: build
-      - name: CMake Test
+      - name: Compile Test Suite
         run: make test
+        working-directory: build
+      - name: Run Tests
+        run: ./test
         working-directory: build
 
         
