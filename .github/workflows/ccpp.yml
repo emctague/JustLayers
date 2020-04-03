@@ -1,0 +1,31 @@
+name: C/C++ CI
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Install CMake
+        run: sudo apt-get install build-essential cmake 
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Make Build Dir
+        run: mkdir build
+      - name: CMake Configure
+        run: cmake ..
+        working-directory: build
+      - name: CMake Build
+        run: make
+        working-directory: build
+      - name: CMake Test
+        run: make test
+        working-directory: build
+
+        
