@@ -11,9 +11,10 @@ namespace jl {
 
     void Taskmaster::start() {
         while (running && !tasks.empty()) {
-            for (auto it = tasks.begin(); it != tasks.end(); it++) {
+            for (auto it = tasks.begin(); it != tasks.end();) {
                 if (!it->get()->updateTask(this))
-                    tasks.erase(it--);
+                    it = tasks.erase(it);
+                else it++;
             }
         }
     }
