@@ -25,7 +25,7 @@ jobs:
         run: make test
         working-directory: build
       - name: Run Tests
-        run: ./test
+        run: ./test/Tests
         working-directory: build
 
         
