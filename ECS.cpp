@@ -2,6 +2,7 @@
 // 
 // Copyright (c) 2020 Ethan McTague
 #include "JustLayers/ECS.h"
+#include <algorithm>
 
 namespace jl {
 
