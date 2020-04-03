@@ -12,5 +12,20 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-     - name: ghaction-cmake
-       uses: lpenz/ghaction-cmake@v0.1
+      - name: Install CMake
+        run: sudo apt-get install build-essential cmake 
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Make Build Dir
+        run: mkdir build
+      - name: CMake Configure
+        run: cmake ..
+        working-directory: build
+      - name: CMake Build
+        run: make
+        working-directory: build
+      - name: CMake Test
+        run: make test
+        working-directory: build
+
+        
