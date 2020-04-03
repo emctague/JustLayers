@@ -4,7 +4,7 @@
 
 #include <gtest/gtest.h>
 #include <string>
-#include <Justlayers/ResourceManager.h>
+#include <JustLayers/ResourceManager.h>
 
 class ResourceType {
 public:
