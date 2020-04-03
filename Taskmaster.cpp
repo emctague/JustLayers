@@ -19,7 +19,7 @@ namespace jl {
     }
 
     void Taskmaster::stop() {
-
+        running = false;
     }
 
     IndirectTask::IndirectTask(ITask *otherTask) : task(otherTask) {
