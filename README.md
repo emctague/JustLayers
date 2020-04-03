@@ -4,6 +4,8 @@ This is a small library that might serve as the foundation of a simple game engi
 singular 'Engine' / 'Game' object that handles everything - rather, several smaller parts can be used together in a
 nice, flexible manner to make a working engine.
 
+I am logging my development process [here](https://forums.tigsource.com/index.php?topic=69774.0).
+
 The **Taskmaster** is an object responsible for managing a set of `ITasks` (*Tasks*). Tasks provide some functionality that should
 occur repeatedly (i.e. every frame) until it is no longer needed. The Taskmaster effectively provides the functionality
 of the main game loop in most engines.
@@ -16,6 +18,11 @@ and the ECS come together - systems need to be aware of entities and their compo
 on each frame. Hence, a System class needs to be both an `ITask` and `IECSListener`. For convenience, a base template
 class `System` is provided - this class can automatically keep a list of Entities which possess the particular
 components your system deals with, as well as self-registering with the ECS and Task system.
+
+The **ResourceManager** is a type that can keep track of some sort of resource. Imagine, for example, you need to load
+textures, ensuring you only unload them when nothing uses them anymore. With `ResourceManager`, these textures would be
+stored in a map whose key is the same as the set of values necessary to initialize that texture. The `ResourceManager`
+can load the texture when asked to, but will instead reuse already loaded resources whenever it can.
 
 Let's look at a very small, very incomplete example:
 
