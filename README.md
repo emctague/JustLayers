@@ -24,6 +24,11 @@ textures, ensuring you only unload them when nothing uses them anymore. With `Re
 stored in a map whose key is the same as the set of values necessary to initialize that texture. The `ResourceManager`
 can load the texture when asked to, but will instead reuse already loaded resources whenever it can.
 
+The **Registry** is a type that can keep track of subclasses of a particular type. This is useful for loading maps -
+entities have components of particular types, of course, which are subclasses of some parent type! The Registry type
+allows you to register these sub-types, associating them with a particular string key. Later, instances of a particular
+subtype can be initialized simply by passing in the correct type name.
+
 Let's look at a very small, very incomplete example:
 
 ```c++
