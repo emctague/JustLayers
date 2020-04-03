@@ -75,4 +75,7 @@ each frame.
 
 
 This framework leaves a lot of flexibility - multiple taskmasters might be made to coordinate across threads, one might
-add a way to dynamically load and unload systems depending on the current state, etc...
+add a way to dynamically load and unload systems depending on the current state, etc... Most importantly, the means by
+which different things update, and the means by which entities are managed are kept separate at their core - the ECS
+could be replaced with a more traditional OOP scene graph without any changes to the Task system, or one might move onto
+a fancier task scheduling system in the future.
