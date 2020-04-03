@@ -36,8 +36,9 @@ namespace jl {
 
         /// Purge unused resources from the list.
         void cleanup() {
-            for (auto it = resources.begin(); it < resources.end(); it++) {
-                if (it->use_count() < 2) resources.erase(it--);
+            for (auto it = resources.begin(); it != resources.end();) {
+                if (it->second.use_count() < 2) it = resources.erase(it);
+                else it++;
             }
         }
     };
