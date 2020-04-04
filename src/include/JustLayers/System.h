@@ -31,7 +31,7 @@ namespace jl {
                 return std::nullopt;
 
             auto prior = buildWithComponents(entity, dummy_typed_struct<FurtherTypes...>());
-            if (!prior.has_value()) return nullptr;
+            if (!prior.has_value()) return std::nullopt;
 
             return std::tuple_cat(std::make_tuple(component), prior.value());
         }
