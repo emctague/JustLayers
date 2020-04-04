@@ -79,7 +79,7 @@ namespace jl {
             // If the tuple wasn't returned it means this entity isn't something we need to care about.
             if (!components) return;
 
-            entities.insert(entity->uuid, components.value());
+            entities.insert({ entity->uuid, components.value() });
             onEntityAdded(entity);
         }
 
