@@ -28,7 +28,7 @@ namespace jl {
             auto component = entity->getComponent<ComponentType>();
 
             if (component == nullptr)
-                return nullptr;
+                return std::nullopt;
 
             auto prior = buildWithComponents(entity, dummy_typed_struct<FurtherTypes...>());
             if (!prior.has_value()) return nullptr;
@@ -77,7 +77,7 @@ namespace jl {
             std::optional<std::tuple<RequiredComponents...>> components = buildWithComponents(entity, dummy_typed_struct<RequiredComponents...>());
 
             // If the tuple wasn't returned it means this entity isn't something we need to care about.
-            if (!components) return;
+            if (!components.has_value()) return;
 
             entities.insert({ entity->uuid, components.value() });
             onEntityAdded(entity);
