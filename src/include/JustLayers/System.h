@@ -74,12 +74,12 @@ namespace jl {
         void entityAdded(Entity *entity) final {
 
             // Obtain a tuple of all the components this system needs from the entity.
-            std::tuple<RequiredComponents...> components = buildWithComponents(entity, dummy_typed_struct<RequiredComponents...>());
+            std::optional<std::tuple<RequiredComponents...>> components = buildWithComponents(entity, dummy_typed_struct<RequiredComponents...>());
 
             // If the tuple wasn't returned it means this entity isn't something we need to care about.
             if (!components) return;
 
-            entities.insert(entity->uuid, components);
+            entities.insert(entity->uuid, components.value());
             onEntityAdded(entity);
         }
 
