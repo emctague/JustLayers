@@ -23,7 +23,7 @@ namespace jl {
         /// Iterate through each required component (in RequiredComponents) and ensure that the entity contains that
         /// component. If so, keep building a tuple of those components, otherwise give up and return null.
         template<typename ComponentType, typename ...FurtherTypes>
-        std::optional<std::tuple<ComponentType, FurtherTypes...>>
+        std::optional<std::tuple<std::shared_ptr<ComponentType>, std::shared_ptr<FurtherTypes>...>>
         buildWithComponents(Entity *entity, dummy_typed_struct<ComponentType, FurtherTypes...>) {
             auto component = entity->getComponent<ComponentType>();
 
@@ -46,7 +46,7 @@ namespace jl {
 
 
         /// A list of all entities (specifically, their required components in a tuple)
-        std::unordered_map<unsigned, std::tuple<RequiredComponents...>> entities;
+        std::unordered_map<unsigned, std::tuple<std::shared_ptr<RequiredComponents>...>> entities;
 
 
         /// The Entity Component System architecture this system is a part of.
@@ -74,7 +74,7 @@ namespace jl {
         void entityAdded(Entity *entity) final {
 
             // Obtain a tuple of all the components this system needs from the entity.
-            std::optional<std::tuple<RequiredComponents...>> components = buildWithComponents(entity, dummy_typed_struct<RequiredComponents...>());
+            std::optional<std::tuple<std::shared_ptr<RequiredComponents>...>> components = buildWithComponents(entity, dummy_typed_struct<RequiredComponents...>());
 
             // If the tuple wasn't returned it means this entity isn't something we need to care about.
             if (!components.has_value()) return;
