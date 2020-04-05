@@ -17,7 +17,7 @@ namespace jl {
 
         /// Called repeatedly by the taskmaster.
         /// @returns True if the task should *continue*, and false if it should be removed.
-        virtual bool updateTask(Taskmaster *taskmaster) = 0;
+        virtual bool updateTask(Taskmaster *taskmaster, float delta) = 0;
 
         virtual ~ITask() = default;
 
@@ -32,7 +32,7 @@ namespace jl {
 
         explicit IndirectTask(ITask *otherTask);
 
-        bool updateTask(Taskmaster *taskmaster) override;
+        bool updateTask(Taskmaster *taskmaster, float delta) override;
 
         static inline std::shared_ptr<IndirectTask> make(ITask *task) {
             return std::make_shared<IndirectTask>(task);

@@ -47,7 +47,7 @@ public:
         // Any required setup
     }
     
-    bool updateTask(jl::Taskmaster *t) override {
+    bool updateTask(jl::Taskmaster *t, float delta) override {
 
         // Iterates over every entity that has a RenderComponent.
         // renderableEntity is actually a tuple of the entity's required components.

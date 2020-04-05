@@ -8,7 +8,7 @@
 class CountAndCancelTask : public jl::ITask {
 public:
     int count = 0;
-    bool updateTask(jl::Taskmaster *taskmaster) override {
+    bool updateTask(jl::Taskmaster *taskmaster, float delta) override {
         count++;
 
         return (count < 10);
@@ -18,7 +18,7 @@ public:
 class CountAndStopTask : public jl::ITask {
 public:
     int count = 0;
-    bool updateTask(jl::Taskmaster *taskmaster) override {
+    bool updateTask(jl::Taskmaster *taskmaster, float delta) override {
         count++;
 
         if (count >= 20) taskmaster->stop();
