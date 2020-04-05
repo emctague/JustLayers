@@ -33,6 +33,13 @@ namespace jl {
         /// Create a new entity.
         Entity();
 
+        /// Create an entity with the given components. Useful for setup in code.
+        template<class ...Types>
+        Entity (Types*... components) : Entity() {
+            addComponents(components...);
+        }
+
+
         /// A Unique Identifier for this entity. Note that identifiers are not necessarily unique across levels, or when
         /// more entities have been created than the maximum number of unsigned integers (unlikely!)
         const unsigned uuid;
@@ -48,6 +55,19 @@ namespace jl {
         template<typename T>
         Entity *addComponent(T *component) {
             components[std::type_index(typeid(T))] = std::shared_ptr<Component>(component);
+            return this;
+        }
+
+        /// Base case for 'addComponents' - does nothing.
+        inline Entity *addComponents() {
+            return this;
+        }
+
+        /// Add multiple components at once.
+        template<typename T, typename ...Types>
+        inline Entity *addComponents(T *val, Types *...values) {
+            addComponent<T>(val);
+            addComponents(values...);
             return this;
         }
 
