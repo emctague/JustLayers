@@ -13,17 +13,18 @@ namespace jl {
     void Taskmaster::start() {
         auto prevFrameTime = std::chrono::high_resolution_clock::now();
 
+
+
         while (running && !tasks.empty()) {
 
             // Calculate delta time in seconds
             auto newFrameTime = std::chrono::high_resolution_clock::now();
-            std::chrono::duration<float> elapsed = newFrameTime - prevFrameTime;
+            auto diff = std::chrono::duration_cast<std::chrono::milliseconds>(newFrameTime - prevFrameTime).count() / 1000.0f;
             prevFrameTime = newFrameTime;
-            float delta = elapsed.count();
 
             // Update all tasks
             for (auto it = tasks.begin(); it != tasks.end();) {
-                if (!it->get()->updateTask(this, delta))
+                if (!it->get()->updateTask(this, diff))
                     it = tasks.erase(it);
                 else it++;
             }
@@ -39,6 +40,6 @@ namespace jl {
     }
 
     bool IndirectTask::updateTask(Taskmaster *taskmaster, float delta) {
-        return task->updateTask(taskmaster, 0);
+        return task->updateTask(taskmaster, delta);
     }
 }
